@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="wheel" params="name parent mass radius thickness side_FB side_LR">
+
+        <xacro:property name="wheel_joint_origin">
+            <origin xyz="${wheel_offset_fb*side_FB} ${wheel_offset_lr*side_LR} -${wheel_offset_z}" rpy="${-side_LR*PI/2} 0.0 0.0"/>
+        </xacro:property>
+
+        <link name="${name}_wheel_link">
+
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${radius}" length="${thickness}"/>
+                </geometry>
+                <material name="yellow">
+                    <color rgba="${255/255} ${237/255} ${40/255} 1.0"/>
+                </material>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <cylinder radius="${radius}" length="${thickness}"/>
+                </geometry>
+            </collision>
+
+            <xacro:inertial_cylinder  mass="${mass}" radius="${radius}" length="${thickness}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_cylinder>
+  
+        </link>
+
+        <joint name="${name}_wheel_joint" type="continuous">
+
+            <parent link="${parent}_link"/>
+
+            <child link="${name}_wheel_link"/>
+
+            <xacro:insert_block name="wheel_joint_origin" />
+
+            <axis xyz="0 0 ${side_LR}" rpy="0 0 0" />
+
+            <dynamic damping="0.01" friction="0.0"/>
+
+        </joint>
+
+        <gazebo reference="${name}_wheel_link">
+            <material>Gazebo/Yellow</material>       
+        </gazebo>
+
+    </xacro:macro>
+
+</robot>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <xacro:macro name="pillar" params="name parent mass radius length side_FB side_LR">
+
+        <xacro:property name="pillar_joint_origin">
+            <origin xyz="${pillar_offset_fb*side_FB} ${pillar_offset_lr*side_LR} 0.0" rpy="0.0 0.0 0.0"/>
+        </xacro:property>
+
+        <link name="pillar_${name}_link">
+
+            <visual>
+                <origin xyz="0.0 0.0 ${length/2}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${radius}" length="${length}"/>
+                </geometry>
+                <material name="pillar_color">
+                    <color rgba="${255/255} ${108/255} ${12/255} 1.0"/>
+                </material>
+            </visual>
+
+            <collision>
+                <origin xyz="0.0 0.0 ${length/2}" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <cylinder radius="${radius}" length="${length}"/>
+                </geometry>
+            </collision>
+
+            <xacro:inertial_cylinder mass="${mass}" radius="${radius}" length="${length}">
+                <origin xyz="0.0 0.0 ${length/2}" rpy="0.0 0.0 0.0"/>
+            </xacro:inertial_cylinder>
+
+        </link>
+
+        <joint name="${parent}_to_pillar_${name}_joint" type="fixed">
+
+            <parent link="${parent}_link"/>
+
+            <child link="pillar_${name}_link"/>
+
+            <xacro:insert_block name="pillar_joint_origin"/>
+
+        </joint>
+
+        <gazebo reference="pillar_${name}_link">
+            <material>Gazebo/Orange</material>
+        </gazebo>
+
+    </xacro:macro>
+    
+</robot>

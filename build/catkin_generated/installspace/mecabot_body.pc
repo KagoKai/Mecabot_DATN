@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: mecabot_body
+Description: Description of mecabot_body
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

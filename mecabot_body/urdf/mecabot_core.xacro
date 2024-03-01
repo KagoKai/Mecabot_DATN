@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="$(find mecabot_body)/urdf/include/common_macros.xacro"/>
+    <xacro:include filename="$(find mecabot_body)/urdf/include/materials.xacro"/>
+
+    <xacro:include filename="$(find mecabot_body)/urdf/chassis/pillar.xacro"/>
+    <xacro:include filename="$(find mecabot_body)/urdf/chassis/layer.xacro"/>
+    <xacro:include filename="$(find mecabot_body)/urdf/wheels/wheel.xacro"/>
+    <xacro:include filename="$(find mecabot_body)/urdf/wheels/mecanum_wheel.xacro"/>
+    <xacro:include filename="$(find mecabot_body)/urdf/sensors/lidar.xacro"/>
+
+    <xacro:include filename="$(find mecabot_body)/urdf/mecabot.gazebo.xacro"/>
+
+    <!--~~~~~~~~~~ BASE LINK ~~~~~~~~~~-->
+    <link name="base_link">
+        <collision>
+            <origin xyz="0.0 0.0 ${chassis_h/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${chassis_l} ${chassis_w} ${chassis_h}"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!--~~~~~~~~~~ LAYER AND PILLAR LINKS ~~~~~~~~~~-->
+    <xacro:layer name="lower_layer" parent="base" mass="${layer_mass}" 
+                length="${layer_l}" width="${layer_w-wheel_thickness*2}" height="${layer_h}" reflect="0"/>
+
+    <xacro:pillar name="one" parent="base" mass="${pillar_mass}" 
+                radius="${pillar_radius}" length="${pillar_length}" side_FB="1" side_LR="0"/>
+    <xacro:pillar name="two" parent="base" mass="${pillar_mass}" 
+                radius="${pillar_radius}" length="${pillar_length}" side_FB="1" side_LR="1"/>
+    <xacro:pillar name="three" parent="base" mass="${pillar_mass}"
+                 radius="${pillar_radius}" length="${pillar_length}" side_FB="1" side_LR="-1"/>
+    <xacro:pillar name="four" parent="base" mass="${pillar_mass}" 
+                radius="${pillar_radius}" length="${pillar_length}" side_FB="-1" side_LR="0"/>
+    <xacro:pillar name="five" parent="base" mass="${pillar_mass}" 
+                radius="${pillar_radius}" length="${pillar_length}" side_FB="-1" side_LR="1"/>
+    <xacro:pillar name="six" parent="base" mass="${pillar_mass}" 
+                radius="${pillar_radius}" length="${pillar_length}" side_FB="-1" side_LR="-1"/>
+
+    <xacro:layer name="upper_layer" parent="base" mass="${layer_mass}" 
+                length="${layer_l}" width="${layer_w-wheel_thickness*2}" height="${layer_h}" reflect="1"/>
+
+    <!--~~~~~~~~~~ MECANUM WHEEL LINKS ~~~~~~~~~~-->
+    <xacro:wheel name="front_left" parent="base" mass="${wheel_mass}" 
+                radius="${wheel_radius}" thickness="${wheel_thickness}" side_FB="1" side_LR="1"/> 
+    <xacro:wheel name="front_right" parent="base" mass="${wheel_mass}" 
+                radius="${wheel_radius}" thickness="${wheel_thickness}" side_FB="1" side_LR="-1"/>
+    <xacro:wheel name="back_left" parent="base" mass="${wheel_mass}" 
+                radius="${wheel_radius}" thickness="${wheel_thickness}" side_FB="-1" side_LR="1"/>
+    <xacro:wheel name="back_right" parent="base" mass="${wheel_mass}" 
+                radius="${wheel_radius}" thickness="${wheel_thickness}" side_FB="-1" side_LR="-1"/>
+
+    <!--~~~~~~~~~~ LIDAR ~~~~~~~~~~-->
+    <xacro:lidar parent="upper_layer"/> 
+
+    <gazebo>
+        <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+            <jointName>front_left_wheel_joint, front_right_wheel_joint, back_left_wheel_joint, back_right_wheel_joint</jointName>
+        </plugin>
+    </gazebo>
+
+    <xacro:mecanum_drive/>
+
+</robot>

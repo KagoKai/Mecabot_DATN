@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="motor_visual" params="name side_FB side_LR">
+        <visual name="${name}">
+            <origin xyz="${motor_offset_fb*side_FB} ${motor_offset_lr*side_LR} -${motor_h/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${motor_l} ${motor_w} ${motor_h}"/>
+            </geometry>
+            <xacro:insert_block name="motor_material"/>
+        </visual>
+        <visual name="${name}_shaft">
+            <origin xyz="${shaft_offset_fb*side_FB} ${(motor_offset_lr + shaft_length/3)*side_LR} -${motor_h/2}" rpy="-${PI/2} 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${shaft_radius}" length="${shaft_length}"/>
+            </geometry>
+            <material name="white">
+                <color rgba="1.0 1.0 1.0 1.0"/>
+            </material>
+        </visual>
+    </xacro:macro>
+
+    <xacro:macro name="direction_pieces">
+
+        <visual name="direction_piece_1">
+            <origin xyz="${length/2-side_piece_size/2} 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${side_piece_size} ${side_piece_size} ${height/2}"/>
+            </geometry>
+            <material name="header">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+
+        <visual name="direction_piece_2">
+            <origin xyz="${length/2-1.5*side_piece_size} ${width/2-side_piece_size/2} ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${side_piece_size} ${side_piece_size} ${height/2}"/>
+            </geometry>
+            <material name="header">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+
+        <visual name="direction_piece_3">
+            <origin xyz="${length/2-1.5*side_piece_size} -${width/2-side_piece_size/2} ${height/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <box size="${side_piece_size} ${side_piece_size} ${height}"/>
+            </geometry>
+            <material name="header">
+                <color rgba="1.0 0.0 0.0 1.0"/>
+            </material>
+        </visual>
+                        
+    </xacro:macro>
+
+    <xacro:macro name="layer" params="name parent mass length width height reflect">
+
+        <xacro:property name="layer_joint_origin">
+            <origin xyz="0 0 ${reflect*0.055}" rpy="0 0 0"/>
+        </xacro:property>
+
+        <link name="${name}_link">
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${length} ${width} ${height}"/>
+                </geometry>
+                <xacro:insert_block name="base_material"/>
+            </visual>
+
+            <xacro:if value="${name == 'upper_layer'}">
+                <xacro:direction_pieces/>
+            </xacro:if>
+
+            <xacro:if value="${name == 'lower_layer'}">
+                <xacro:motor_visual name="FL_motor" side_FB="1" side_LR="1"/>
+                <xacro:motor_visual name="FR_motor" side_FB="1" side_LR="-1"/>
+                <xacro:motor_visual name="BL_motor" side_FB="-1" side_LR="1"/>
+                <xacro:motor_visual name="BR_motor" side_FB="-1" side_LR="-1"/>
+            </xacro:if>
+
+            <!-- Front left piece -->
+            <visual>
+                <origin xyz="${length/2-side_piece_size/2} ${width/2+side_piece_size/2} 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="${side_piece_size} ${side_piece_size} ${height}"/>
+                </geometry>
+                <xacro:insert_block name="base_material"/>
+            </visual>
+            <!-- Front right piece -->
+            <visual>
+                <origin xyz="${length/2-side_piece_size/2} -${width/2+side_piece_size/2} 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="${side_piece_size} ${side_piece_size} ${height}"/>
+                </geometry>
+                <xacro:insert_block name="base_material"/>
+            </visual>
+            <!-- Middle left piece -->
+            <visual>
+                <origin xyz="0.0 ${width/2+side_piece_size/2} 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="${side_piece_size*1.8} ${side_piece_size} ${height}"/>
+                </geometry>
+                <xacro:insert_block name="base_material"/>
+            </visual>
+            <!-- Middle right piece -->
+            <visual>
+                <origin xyz="0.0 -${width/2+side_piece_size/2} 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="${side_piece_size*1.8} ${side_piece_size} ${height}"/>
+                </geometry>
+                <xacro:insert_block name="base_material"/>
+            </visual>
+            <!-- Back left piece -->
+            <visual>
+                <origin xyz="-${length/2-side_piece_size/2} ${width/2+side_piece_size/2} 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="${side_piece_size} ${side_piece_size} ${height}"/>
+                </geometry>
+                <xacro:insert_block name="base_material"/>
+            </visual>
+            <!-- Back right piece -->
+            <visual>
+                <origin xyz="-${length/2-side_piece_size/2} -${width/2+side_piece_size/2} 0" rpy="0.0 0.0 0.0"/>
+                <geometry>
+                    <box size="${side_piece_size} ${side_piece_size} ${height}"/>
+                </geometry>
+                <xacro:insert_block name="base_material"/>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+                <geometry>
+                    <box size="${length} ${width + 2*side_piece_size} ${height}"/>
+                </geometry>
+            </collision>
+            
+            <xacro:inertial_box mass="${mass}" x="${length}" y="${width}" z="${height}">
+                <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0"/>
+            </xacro:inertial_box>
+
+        </link>
+
+        <joint name="${parent}_to_${name}_joint" type="fixed">
+
+            <parent link="${parent}_link"/>
+
+            <child link="${name}_link"/>
+
+            <xacro:insert_block name="layer_joint_origin"/>
+
+        </joint>
+
+        <gazebo reference="${name}_link">
+            <material>Gazebo/Blue</material>
+        </gazebo>
+
+    </xacro:macro>
+    
+</robot>

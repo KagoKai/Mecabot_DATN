@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="lidar" params="parent">
+
+        <xacro:property name="lidar_joint_origin">
+            <origin xyz="0 0 ${lidar_height/2}" rpy="0.0 0.0 0.0"/>
+        </xacro:property>
+
+        <joint name="lidar_joint" type="fixed">
+            <xacro:insert_block name="lidar_joint_origin"/>
+            <parent link="${parent}_link"/>
+            <child link="lidar_frame"/>
+        </joint>
+
+        <link name="lidar_frame">
+
+            <visual>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <cylinder radius="${lidar_radius}" length="${lidar_height}"/>
+                </geometry>
+            </visual>
+
+            <collision>
+                <origin xyz="0 0 0" rpy="0 0 0" />
+                <geometry>
+                    <cylinder radius="${lidar_radius}" length="${lidar_height}"/>
+                </geometry>
+            </collision>
+
+            <xacro:inertial_cylinder  mass="${lidar_mass}" radius="${lidar_radius}" length="${lidar_height}">
+                <origin xyz="0 0 0" rpy="0 0 0"/>
+            </xacro:inertial_cylinder>
+
+        </link>
+
+        <gazebo reference="lidar_frame">
+
+            <material>Gazebo/Black</material>
+
+            <sensor name="laser" type="ray">
+                <pose> 0 0 0 0 0 0 </pose>
+                <visualize>true</visualize>
+                <update_rate>10</update_rate>
+                <ray>
+                    <scan>
+                        <horizontal>
+                            <samples>360</samples>
+                            <resolution>1</resolution>
+                            <min_angle>-3.14</min_angle>
+                            <max_angle>3.14</max_angle>
+                        </horizontal>
+                    </scan>
+                    <range>
+                        <min>0.2</min>
+                        <max>12</max>
+                    </range>
+                </ray>
+                <plugin name="laser_controller" filename="libgazebo_ros_laser.so">
+                    <topicName>/mecabot/laser/scan</topicName>
+                    <frameName>lidar_frame</frameName>
+                  </plugin>
+            </sensor>
+        </gazebo>
+
+    </xacro:macro>
+
+</robot>
