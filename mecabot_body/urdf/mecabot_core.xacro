@@ -20,6 +20,7 @@
             </geometry>
         </collision>
     </link>
+    <!-- Fix the cobot to the world-->
 
     <!--~~~~~~~~~~ CHASSIS LAYERS ~~~~~~~~~~-->
     <xacro:layer name="lower_layer" parent="base" mass="${layer_mass}" 
@@ -39,9 +40,9 @@
                 radius="${wheel_radius}" thickness="${wheel_thickness}" side_FB="-1" side_LR="-1"/>
 
     <!--~~~~~~~~~~ LIDAR ~~~~~~~~~~-->
-    <xacro:lidar parent="upper_layer"/> 
+    <!-- <xacro:lidar parent="upper_layer"/>  -->
     <!--~~~~~~~~~~ IMU ~~~~~~~~~~-->
-    <xacro:imu parent="lower_layer"/>
+    <xacro:imu parent="base"/>
 
     <!-- <gazebo>
         <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">

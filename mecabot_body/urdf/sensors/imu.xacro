@@ -36,6 +36,7 @@
                 <visualize>true</visualize>
                 <topic>__default_topic__</topic>
                 <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+                    <robotNamespace>/mecabot</robotNamespace>
                     <topicName>imu</topicName>
                     <bodyName>imu_frame</bodyName>
                     <updateRateHZ>10.0</updateRateHZ>
