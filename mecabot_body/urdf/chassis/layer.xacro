@@ -21,7 +21,7 @@
         </visual>
     </xacro:macro>
 
-    <xacro:macro name="direction_pieces">
+    <xacro:macro name="direction_pieces_visual">
 
         <visual name="direction_piece_1">
             <origin xyz="${length/2-side_piece_size/2} 0.0 ${height/2}" rpy="0.0 0.0 0.0"/>
@@ -55,6 +55,18 @@
                         
     </xacro:macro>
 
+    <xacro:macro name="pillar_visual" params="side_FB side_LR">
+        <visual>
+            <origin xyz="${pillar_offset_fb*side_FB} ${pillar_offset_lr*side_LR} ${-pillar_length/2}" rpy="0.0 0.0 0.0"/>
+            <geometry>
+                <cylinder radius="${pillar_radius}" length="${pillar_length}"/>
+            </geometry>
+            <material name="pillar_color">
+                <color rgba="${255/255} ${108/255} ${12/255} 1.0"/>
+            </material>
+        </visual>
+    </xacro:macro>
+
     <xacro:macro name="layer" params="name parent mass length width height reflect">
 
         <xacro:property name="layer_joint_origin">
@@ -72,7 +84,13 @@
             </visual>
 
             <xacro:if value="${name == 'upper_layer'}">
-                <xacro:direction_pieces/>
+                <xacro:direction_pieces_visual/>
+                <xacro:pillar_visual side_FB="1" side_LR="0"/>
+                <xacro:pillar_visual side_FB="1" side_LR="1"/>
+                <xacro:pillar_visual side_FB="1" side_LR="-1"/>
+                <xacro:pillar_visual side_FB="-1" side_LR="0"/>
+                <xacro:pillar_visual side_FB="-1" side_LR="1"/>
+                <xacro:pillar_visual side_FB="-1" side_LR="-1"/>
             </xacro:if>
 
             <xacro:if value="${name == 'lower_layer'}">

@@ -11,7 +11,6 @@
 
     <arg name="config" default="urdf"/>
     <arg name="rvizconfig" default="$(find mecabot_body)/rviz/urdf.rviz" />
-    <arg name="use_gui" default="true" doc="Should the joint_state_publisher use a GUI for controlling joint states" />
 
     <!-- Default spawn position -->
     <arg name="x" default="0.0"/>
@@ -21,10 +20,11 @@
     <param name="robot_description" command="$(find xacro)/xacro '$(find mecabot_body)/urdf/mecabot.urdf.xacro'"/>
     <param name="/use_sim_time" value="true" />
 
-    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" output="screen"/>
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)"/>
+
     <node name="robot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
-            args="-urdf -param robot_description -model mecabot -x $(arg x) -y $(arg y) -z $(arg z)"/>
+            args="-urdf -model mecabot -param robot_description -x $(arg x) -y $(arg y) -z $(arg z)"/>
 
 </launch>
