@@ -29,6 +29,14 @@
   
         </link>
 
+        <gazebo reference="${name}_wheel_link">
+			<mu1 value="0.5"/>
+			<mu2 value="0.5"/>
+			<kp value="10000000.0" />
+			<kd value="1.0" />
+			<fdir1 value="1 0 0"/>
+		</gazebo>
+
         <joint name="${name}_wheel_joint" type="continuous">
 
             <parent link="${parent}_link"/>
@@ -39,11 +47,9 @@
 
             <axis xyz="0 0 ${side_LR}" rpy="0 0 0" />
 
-            <dynamic damping="0.01" friction="0.0"/>
-
         </joint>
 
-        <transmission name="${name}_wheel_transmission">
+        <!-- <transmission name="${name}_wheel_transmission">
             <type>transmission_interface/SimpleTransmission</type>
             <joint name="${name}_wheel_joint">
                 <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
@@ -52,7 +58,7 @@
                 <mechanicalReduction>1.0</mechanicalReduction>
                 <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
             </actuator>
-        </transmission>
+        </transmission> -->
 
         <gazebo reference="${name}_wheel_link">
             <material>Gazebo/Yellow</material>       

@@ -3,6 +3,6 @@
   
     <xacro:include filename="$(find mecabot_body)/urdf/mecabot_core.xacro"/>
 
-    <!-- <xacro:include filename="$(find mecabot_body)/urdf/gazebo_control.xacro"/> -->
+    <xacro:include filename="$(find mecabot_body)/urdf/gazebo_control.xacro"/>
 
 </robot>

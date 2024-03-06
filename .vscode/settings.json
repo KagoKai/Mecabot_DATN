@@ -1,3 +1,9 @@
 {
-    "cmake.sourceDirectory": "/home/kagokai/catkin_ws/src/mecabot_body"
+    "cmake.sourceDirectory": "/home/kagokai/catkin_ws/src/mecabot_body",
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
 }

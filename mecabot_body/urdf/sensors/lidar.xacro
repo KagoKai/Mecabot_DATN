@@ -47,7 +47,7 @@
                 <ray>
                     <scan>
                         <horizontal>
-                            <samples>360</samples>
+                            <samples>359</samples>
                             <resolution>1</resolution>
                             <min_angle>-3.14</min_angle>
                             <max_angle>3.14</max_angle>
@@ -61,13 +61,13 @@
                     <noise>
                         <type>gaussian</type>
                         <mean>0.0</mean>
-                        <stddev>0.01</stddev>
+                        <stddev>0.02</stddev>
                     </noise>
                 </ray>
         
                 <plugin name="laser_controller" filename="libgazebo_ros_laser.so">
-                    <robotNamespace></robotNamespace>
-                    <topicName>/mecabot/laser/scan</topicName>
+                    <robotNamespace>/mecabot</robotNamespace>
+                    <topicName>/laser/scan</topicName>
                     <frameName>lidar_frame</frameName>
                 </plugin>
             </sensor>

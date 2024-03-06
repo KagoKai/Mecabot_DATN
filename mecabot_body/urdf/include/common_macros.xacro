@@ -29,7 +29,7 @@
     <xacro:property name="layer_l" value="0.255"/>
     <xacro:property name="layer_w" value="0.15"/>
     <xacro:property name="layer_h" value="0.002"/>
-    <xacro:property name="layer_mass" value="0.07"/>
+    <xacro:property name="layer_mass" value="1.0"/>
 
     <xacro:property name="side_piece_size" value="0.03"/>
 
@@ -51,7 +51,7 @@
     <!--~~~~~~~~~~ Wheel properties ~~~~~~~~~~-->
     <xacro:property name="wheel_radius" value="0.03" />
     <xacro:property name="wheel_thickness" value="0.031" />
-    <xacro:property name="wheel_mass" value="0.04" /> <!-- in kg-->
+    <xacro:property name="wheel_mass" value="0.5" /> <!-- in kg-->
 
     <xacro:property name="wheel_offset_z" value="0.009" />
     <xacro:property name="wheel_offset_fb" value="0.06215"/>

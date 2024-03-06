@@ -8,11 +8,10 @@ project(mecabot_gazebo)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  gazebo_plugins
   gazebo_ros
-  gazebo_ros_control
-  mecabot_body
-  xacro
+  roscpp
+  rospy
+  sensor_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -72,7 +71,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   std_msgs  # Or other packages containing msgs
+#   sensor_msgs
 # )
 
 ################################################
@@ -107,7 +106,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES mecabot_gazebo
-#  CATKIN_DEPENDS gazebo_plugins gazebo_ros gazebo_ros_control mecabot_body xacro
+#  CATKIN_DEPENDS gazebo_ros roscpp rospy sensor_msgs
 #  DEPENDS system_lib
 )
 

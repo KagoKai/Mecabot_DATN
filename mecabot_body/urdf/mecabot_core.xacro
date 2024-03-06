@@ -13,14 +13,7 @@
 
     <!--~~~~~~~~~~ BASE LINK ~~~~~~~~~~-->
     <link name="base_link">
-        <collision>
-            <origin xyz="0.0 0.0 ${chassis_h/2}" rpy="0.0 0.0 0.0"/>
-            <geometry>
-                <box size="${chassis_l} ${chassis_w} ${chassis_h}"/>
-            </geometry>
-        </collision>
     </link>
-    <!-- Fix the cobot to the world-->
 
     <!--~~~~~~~~~~ CHASSIS LAYERS ~~~~~~~~~~-->
     <xacro:layer name="lower_layer" parent="base" mass="${layer_mass}" 
@@ -40,21 +33,21 @@
                 radius="${wheel_radius}" thickness="${wheel_thickness}" side_FB="-1" side_LR="-1"/>
 
     <!--~~~~~~~~~~ LIDAR ~~~~~~~~~~-->
-    <!-- <xacro:lidar parent="upper_layer"/>  -->
+    <xacro:lidar parent="upper_layer"/> 
     <!--~~~~~~~~~~ IMU ~~~~~~~~~~-->
     <xacro:imu parent="base"/>
 
-    <!-- <gazebo>
+    <gazebo>
         <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
             <jointName>front_left_wheel_joint, front_right_wheel_joint, back_left_wheel_joint, back_right_wheel_joint</jointName>
         </plugin>
-    </gazebo> -->
+    </gazebo>
 
     <!--~~~~~~~~~~ ros_control ~~~~~~~~~~-->
-    <gazebo>
+    <!-- <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
             <robotNamespace>/mecabot</robotNamespace>
         </plugin>
-    </gazebo>
+    </gazebo> -->
 
 </robot>

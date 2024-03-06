@@ -8,16 +8,16 @@ mecabot:
   front_left_wheel_controller:
     type: effort_controllers/JointPositionController
     joint: front_left_wheel_joint
-    pid: {p: 700, i: 50, d: 70}
+    pid: {p: 0, i: 50, d: 70}
   front_right_wheel_controller:
     type: effort_controllers/JointPositionController
     joint: front_right_wheel_joint
-    pid: {p: 700, i: 50, d: 70}
+    pid: {p: 0, i: 50, d: 70}
   back_left_wheel_controller:
     type: effort_controllers/JointPositionController
     joint: back_left_wheel_joint
-    pid: {p: 700, i: 50, d: 70}
+    pid: {p: 0, i: 50, d: 70}
   back_right_wheel_controller:
     type: effort_controllers/JointPositionController
     joint: back_right_wheel_joint
-    pid: {p: 700, i: 50, d: 70}
+    pid: {p: 0, i: 50, d: 70}
