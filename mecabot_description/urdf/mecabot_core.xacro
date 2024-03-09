@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <xacro:include filename="$(find mecabot_body)/urdf/include/common_macros.xacro"/>
-    <xacro:include filename="$(find mecabot_body)/urdf/include/materials.xacro"/>
+    <xacro:include filename="$(find mecabot_description)/urdf/include/common_macros.xacro"/>
+    <xacro:include filename="$(find mecabot_description)/urdf/include/materials.xacro"/>
 
-    <xacro:include filename="$(find mecabot_body)/urdf/chassis/layer.xacro"/>
-    <xacro:include filename="$(find mecabot_body)/urdf/wheels/wheel.xacro"/>
-    <xacro:include filename="$(find mecabot_body)/urdf/wheels/mecanum_wheel.xacro"/>
+    <xacro:include filename="$(find mecabot_description)/urdf/chassis/layer.xacro"/>
+    <xacro:include filename="$(find mecabot_description)/urdf/wheels/wheel.xacro"/>
+    <xacro:include filename="$(find mecabot_description)/urdf/wheels/mecanum_wheel.xacro"/>
 
-    <xacro:include filename="$(find mecabot_body)/urdf/sensors/imu.xacro"/>
-    <xacro:include filename="$(find mecabot_body)/urdf/sensors/lidar.xacro"/>
+    <xacro:include filename="$(find mecabot_description)/urdf/sensors/imu.xacro"/>
+    <xacro:include filename="$(find mecabot_description)/urdf/sensors/lidar.xacro"/>
 
     <!--~~~~~~~~~~ BASE LINK ~~~~~~~~~~-->
     <link name="base_link">

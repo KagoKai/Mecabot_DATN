@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    
+    <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch"/>
+
+    <arg name="config" default="urdf"/>
+    <arg name="rvizconfig" default="$(find mecabot_gazebo)/rviz/urdf.rviz" />
+
+    <!-- Open rviz for visualization -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" />
+
+</launch>

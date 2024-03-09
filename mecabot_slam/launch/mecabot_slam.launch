@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <arg name="slam_methods" default="hector" doc="slam type [gmapping, cartographer, hector, karto, frontier_exploration]"/>
+
+</launch>

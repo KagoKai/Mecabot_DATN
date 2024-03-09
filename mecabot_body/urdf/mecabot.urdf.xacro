@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mecabot">
-  
-    <xacro:include filename="$(find mecabot_body)/urdf/mecabot_core.xacro"/>
-
-    <xacro:include filename="$(find mecabot_body)/urdf/gazebo_control.xacro"/>
-
-</robot>
