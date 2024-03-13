@@ -66,8 +66,8 @@
                 </ray>
         
                 <plugin name="laser_controller" filename="libgazebo_ros_laser.so">
-                    <robotNamespace>/mecabot</robotNamespace>
-                    <topicName>/laser/scan</topicName>
+                    <robotNamespace>/</robotNamespace>
+                    <topicName>/scan</topicName>
                     <frameName>lidar_frame</frameName>
                 </plugin>
             </sensor>

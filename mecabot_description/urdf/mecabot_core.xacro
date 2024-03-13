@@ -35,7 +35,7 @@
     <!--~~~~~~~~~~ LIDAR ~~~~~~~~~~-->
     <xacro:lidar parent="upper_layer"/> 
     <!--~~~~~~~~~~ IMU ~~~~~~~~~~-->
-    <xacro:imu parent="base"/>
+    <!-- <xacro:imu parent="base"/> -->
 
     <gazebo>
         <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
