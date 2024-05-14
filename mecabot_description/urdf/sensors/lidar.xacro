@@ -32,7 +32,7 @@
             </xacro:inertial_cylinder>
         </link>
 
-        <!-- Lidar simulation using Gazebo -->
+        <!-- Lidar simulation using Gazebo. Change condition to False when run on real robot -->
         <gazebo reference="lidar_frame">
             <material>Gazebo/Black</material>
             <sensor name="laser" type="ray">

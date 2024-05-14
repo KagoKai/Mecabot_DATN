@@ -2,15 +2,20 @@
     <!-- Arguments -->
     <arg name="map_file" default="$(find mecabot_navigation)/maps/demo_map_save.yaml"/>
     <arg name="move_forward_only" default="true"/>
-    <arg name="use_rviz" default="true"/>
+    <arg name="use_rviz" default="false"/>
     <arg name="rvizconfig" default="$(find mecabot_navigation)/rviz/urdf.rviz" />
-    <arg name="use_simulation" default="true"/>
+    <arg name="use_simulation" default="false"/>
 
+    <!-- Publish the robot state & link information to the ROS Server -->
     <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch"/>
+
+    <!-- Run the LiDAR -->
+    <include file="$(find mecabot_bringup)/launch/mecabot_lidar.launch"/>
 
     <!-- Map server -->
     <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/>
 
+    <!-- Run the simulation in Gazebo (only run on server machine) -->
     <include file="$(find mecabot_gazebo)/launch/spawn_mecabot_world.launch" if="$(arg use_simulation)"/>
 
     <!-- AMCL -->
