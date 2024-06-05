@@ -1,3 +1,5 @@
+ <!-- Set up the connection between the Raspberry Pi and the Lidar -->
+
 <launch>
   <arg name="frame_id" default="laser_frame"/>
 

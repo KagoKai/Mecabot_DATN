@@ -1,0 +1,18 @@
+ <!-- Start up the robot along with its peripheral devices (LiDAR) in your ROS environment -->
+
+ <launch>
+
+    <arg name="multi_robot_name"      default=""/>
+    <arg name="lidar_frame_id" default="laser_frame"/>
+
+    <!-- Rosserial -->
+    <include file="$(find mecabot_bringup)/launch/mecabot_rosserial.launch">
+        <arg name="multi_robot_name" value="$(arg multi_robot_name)"/>
+    </include>
+
+    <!-- RPLiDAR -->
+    <include file="$(find mecabot_bringup)/launch/mecabot_lidar.launch">
+        <arg name="frame_id" value="$(arg lidar_frame_id)"/>
+    </include>
+
+ </launch>

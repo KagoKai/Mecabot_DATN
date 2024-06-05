@@ -1,3 +1,5 @@
+<!-- Spawn the robot along with the simulation world in Gazebo -->
+
 <?xml version="1.0"?>
 <launch>
     
