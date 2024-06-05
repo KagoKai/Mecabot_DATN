@@ -1,6 +1,5 @@
 <!-- Spawn the robot along with the simulation world in Gazebo -->
 
-<?xml version="1.0"?>
 <launch>
     
     <!-- Default world name -->
@@ -10,7 +9,7 @@
     <arg name="y" default="0.0"/>
     <arg name="z" default="0.1"/>
     <!-- Open with rViz or not -->
-    <!-- <arg name="use_rviz" default="true"/> -->
+    <arg name="use_rviz" default="true"/> 
     
     <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -22,12 +21,17 @@
         <arg name="headless" value="false"/>
     </include>
 
-    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find mecabot_description)/urdf/mecabot.urdf.xacro" />
+    <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch">
+        <arg name="is_using_simulation" value="true"/>
+    </include>
 
     <!-- Spawn the robot with gazebo_ros -->
     <node name="robot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
             args="-urdf -model mecabot -param robot_description -x $(arg x) -y $(arg y) -z $(arg z)"/>
 
-    <!-- <include file="$(find mecabot_gazebo)/launch/mecabot_rviz.launch" if="$(arg use_rviz)"/> -->
+    <arg name="rvizconfig" default="$(find mecabot_gazebo)/rviz/simulation.rviz" />
+
+    <!-- Open rviz for visualization -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" if="$(arg use_rviz)"/>
 
 </launch>

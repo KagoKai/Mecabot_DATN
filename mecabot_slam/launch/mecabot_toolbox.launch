@@ -1,0 +1,8 @@
+<launch>
+  <arg name="slam_mode" default="mapper" doc="slam mode [mapper, localizer]"/>
+
+  <node pkg="slam_toolbox" type="async_slam_toolbox_node" name="slam_toolbox" output="screen">
+    <rosparam command="load" file="$(find mecabot_slam)/config/$(arg slam_mode)_params_online_async.yaml" />
+  </node>
+
+</launch>

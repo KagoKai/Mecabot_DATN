@@ -1,7 +1,8 @@
  <!-- Add the robot description (URDF file) to the parameter server -->
 
 <launch>
-  <arg name="model"/>
-  <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find mecabot_description)/urdf/mecabot.urdf.xacro'" />
+  <arg name="is_using_simulation" default="false" />
+
+  <arg name="urdf_file" default="$(find xacro)/xacro --inorder '$(find mecabot_description)/urdf/mecabot.urdf.xacro' use_simulation:=$(arg is_using_simulation)"/>
   <param name="robot_description" command="$(arg urdf_file)" />
 </launch>
