@@ -2,10 +2,10 @@
 
 <launch>
   <arg name="multi_robot_name" default=""/>
-  <arg name="is_using_simulation" default="false"/>
+  <arg name="use_simulation" default="false"/>
 
   <include file="$(find mecabot_bringup)/launch/includes/description.launch.xml">
-    <arg name="is_using_simulation" value="$(arg is_using_simulation)"/>
+    <arg name="use_simulation" value="$(arg use_simulation)"/>
   </include>
 
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">

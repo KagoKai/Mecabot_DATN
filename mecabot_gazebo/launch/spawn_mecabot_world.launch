@@ -22,7 +22,7 @@
     </include>
 
     <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch">
-        <arg name="is_using_simulation" value="true"/>
+        <arg name="use_simulation" value="true"/>
     </include>
 
     <!-- Spawn the robot with gazebo_ros -->

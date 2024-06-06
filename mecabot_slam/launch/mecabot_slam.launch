@@ -1,13 +1,11 @@
 <!-- Run the SLAM package. Must start the robot first using the bringup script -->
 
-<?xml version="1.0"?>
 <launch>
   <!-- Arguments -->
   <arg name="slam_methods" default="toolbox" doc="slam type [gmapping, hector, karto, toolbox]"/>
   <arg name="configuration_basename" default="robot_lds_2d.lua"/>
   <arg name="open_rviz" default="true"/>
-
-  <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch"/>
+  <arg name="use_simulation" default="false"/>
 
   <!-- SLAM: Gmapping, Hector, Karto, Toolbox -->
   <include file="$(find mecabot_slam)/launch/mecabot_$(arg slam_methods).launch">
@@ -17,6 +15,19 @@
   <!-- rviz -->
   <group if="$(arg open_rviz)"> 
     <node pkg="rviz" type="rviz" name="rviz" required="true"
-          args="-d $(find robot_slam)/rviz/mecabot_$(arg slam_methods).rviz"/>
+          args="-d $(find mecabot_slam)/rviz/mecabot_$(arg slam_methods).rviz"/>
+  </group>
+
+  <!-- Gazebo (if use simulation) -->
+  <group if="$(arg use_simulation)">
+    <include file="$(find mecabot_gazebo)/launch/spawn_mecabot_world.launch">
+      <arg name="use_rviz" value="false"/>
+    </include>
+  </group>
+  <!-- Robot descrition (if use real robot) -->
+  <group unless="$(arg use_simulation)">
+    <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch">
+      <arg name="use_simulation" default="false"/>
+    </include>
   </group>
 </launch>
