@@ -1,13 +1,11 @@
  <!-- Set up the connection between the Raspberry Pi and the Lidar -->
 
 <launch>
-  <arg name="frame_id" default="laser_frame"/>
+    <arg name="port" default="/dev/ttyUSB1"/>
+    <arg name="frame_id" default="lidar_frame"/>
 
-  <node pkg="rplidar_ros"  type="rplidarNode" name="mecabot_scan_node" output="screen">
-    <param name="serial_port"         type="string" value="/dev/ttyUSB1"/>
-    <param name="serial_baudrate"     type="int"    value="115200"/><!--A1/A2 -->
-    <param name="frame_id"            type="string" value="$(arg frame_id)"/>
-    <param name="inverted"            type="bool"   value="false"/>
-    <param name="angle_compensate"    type="bool"   value="true"/>
-  </node>
+    <include file="$(find lidar_driver)/launch/lidar_init.launch">
+      <arg name="frame_id" value="$(arg frame_id)"/>
+      <arg name="port" value="$(arg port)"/>
+    </include>
 </launch>

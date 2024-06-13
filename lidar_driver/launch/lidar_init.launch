@@ -1,0 +1,17 @@
+<launch>
+    <arg name="port" default="/dev/ttyUSB1"/>
+    <arg name="frame_id" default="lidar_frame"/>
+    <arg name="motor_duty" default="100"/>
+
+    <node pkg="lidar_test" type="lidar_motor.py" name="lidar_motor">
+        <param name="motor_duty"          type="int"    value="$(arg motor_duty)"/>
+    </node>
+
+    <node pkg="rplidar_ros"  type="rplidarNode" name="mecabot_scan_node" output="screen">
+        <param name="serial_port"         type="string" value="$(arg port)"/>
+        <param name="serial_baudrate"     type="int"    value="115200"/><!--A1/A2 -->
+        <param name="frame_id"            type="string" value="$(arg frame_id)"/>
+        <param name="inverted"            type="bool"   value="false"/>
+        <param name="angle_compensate"    type="bool"   value="true"/>
+    </node>
+</launch>
