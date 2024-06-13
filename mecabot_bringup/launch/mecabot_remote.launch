@@ -1,4 +1,4 @@
- <!-- Start the robot URDF (to view in RViz) and publish its link transformations (TF tree) -->
+ <!-- Initiate the Robot Description and publish its link transformations (TF tree) -->
 
 <launch>
   <arg name="multi_robot_name" default=""/>

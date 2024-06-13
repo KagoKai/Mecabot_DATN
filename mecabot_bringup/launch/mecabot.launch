@@ -1,4 +1,5 @@
- <!-- Start up the robot along with its peripheral devices (LiDAR) in your ROS environment -->
+ <!-- Start up the real robot along with its peripheral devices (LiDAR) in your ROS environment -->
+ <!-- This should be run together with the mecabot_remote.launch file -->
 
  <launch>
 

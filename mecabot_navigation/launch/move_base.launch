@@ -1,8 +1,8 @@
 <launch>
   <!-- Arguments -->
-  <arg name="map_topic" default="map" />
-  <arg name="cmd_vel_topic" default="cmd_vel" />
-  <arg name="odom_topic" default="odom" />
+  <arg name="map_topic" default="/map" />
+  <arg name="cmd_vel_topic" default="/cmd_vel" />
+  <arg name="odom_topic" default="/odom" />
   <arg name="move_forward_only" default="true"/>
 
   <!-- move_base -->

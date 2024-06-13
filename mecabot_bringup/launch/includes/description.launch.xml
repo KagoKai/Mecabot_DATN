@@ -1,4 +1,4 @@
- <!-- Add the robot description (URDF file) to the parameter server -->
+ <!-- Load the robot description (URDF file) to the parameter server -->
 
 <launch>
   <arg name="use_simulation" default="false" />
