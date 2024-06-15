@@ -6,9 +6,6 @@
     <arg name="multi_robot_name"      default=""/>
     <arg name="lidar_frame_id" default="lidar_frame"/>
 
-    <!-- Publish joint states and description -->
-    <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch"/>
-
     <!-- Rosserial -->
     <include file="$(find mecabot_bringup)/launch/mecabot_rosserial.launch">
         <arg name="multi_robot_name" value="$(arg multi_robot_name)"/>
@@ -19,5 +16,4 @@
         <arg name="frame_id" value="$(arg lidar_frame_id)"/>
     </include>
     
-
  </launch>
