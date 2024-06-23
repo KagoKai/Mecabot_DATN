@@ -38,7 +38,7 @@
     <!--~~~~~~~~~~ LIDAR ~~~~~~~~~~-->
     <xacro:lidar parent="upper_layer"/> 
     <!--~~~~~~~~~~ IMU ~~~~~~~~~~-->
-    <xacro:imu parent="base"/>
+    <xacro:imu parent="upper_layer"/>
 
     <!--~~~~~~~~~~ Extra simulation components (if use Gazebo). Change condition to False when run on real robot  ~~~~~~~~~~-->
     <xacro:if value="$(arg use_simulation)">

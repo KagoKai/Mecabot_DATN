@@ -27,7 +27,7 @@
 
     <!--~~~~~~~~~~ Layer and chassis properties ~~~~~~~~~~-->
     <xacro:property name="layer_l" value="0.255"/>
-    <xacro:property name="layer_w" value="0.15"/>
+    <xacro:property name="layer_w" value="0.148"/>
     <xacro:property name="layer_h" value="0.002"/>
     <xacro:property name="layer_mass" value="1.0"/>
 
@@ -65,7 +65,7 @@
 
     <!--~~~~~~~~~~ LiDAR properties ~~~~~~~~~~-->
     <xacro:property name="lidar_radius" value="0.035"/>
-    <xacro:property name="lidar_height" value="0.03"/>
+    <xacro:property name="lidar_height" value="0.075"/>
     <xacro:property name="lidar_mass" value="0.29"/>
 
 

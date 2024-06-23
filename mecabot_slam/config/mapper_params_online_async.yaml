@@ -1,7 +1,7 @@
 # Plugin params
 solver_plugin: solver_plugins::CeresSolver
 ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
-ceres_preconditioner: SCHUR_JACOBI
+ceres_preconditioner: JACOBI
 ceres_trust_strategy: LEVENBERG_MARQUARDT
 ceres_dogleg_type: TRADITIONAL_DOGLEG
 ceres_loss_function: None
@@ -12,6 +12,8 @@ map_frame: map
 base_frame: base_link
 scan_topic: /scan
 mode: mapping #localization
+use_map_saver : true
+
 
 # if you'd like to immediately start continuing a map at a given pose
 # or at the dock, but they are mutually exclusive, if pose is given
@@ -21,14 +23,15 @@ mode: mapping #localization
 #map_start_at_dock: true
 
 debug_logging: false
+scan_queue_size: 1
 throttle_scans: 1
-transform_publish_period: 10 #if 0 never publishes odometry
-map_update_interval: 1.0
-resolution: 0.05
+transform_publish_period: 0.1 #if 0 never publishes odometry
+map_update_interval: 5.0
+resolution: 0.1
 max_laser_range: 12.0 #for rastering images
 minimum_time_interval: 0.5
 transform_timeout: 0.2
-tf_buffer_duration: 30.
+tf_buffer_duration: 5.
 stack_size_to_use: 40000000 #// program needs a larger stack size to serialize large maps
 enable_interactive_mode: true
 

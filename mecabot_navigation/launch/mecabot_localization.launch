@@ -14,11 +14,14 @@
         <include file="$(find mecabot_gazebo)/launch/spawn_mecabot_world.launch" if="$(arg use_simulation)"/>
     </group>
 
-    <!-- move_base -->
-    <include file="$(find mecabot_navigation)/launch/move_base.launch">
-        <arg name="move_forward_only" value="$(arg move_forward_only)"/>
+    <!-- AMCL -->
+    <!-- <include file="$(find mecabot_navigation)/launch/amcl.launch"/> -->
+    <!-- MCL -->
+    <include file="$(find als_ros)/launch/mcl.launch">
+        <arg name="localization_hz" value="10"/>
     </include>
 
     <!-- Open rviz for visualization -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" if="$(arg use_rviz)"/>
+    
 </launch>

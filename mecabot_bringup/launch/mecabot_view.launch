@@ -1,0 +1,14 @@
+<launch>
+    <arg name="rvizconfig" default="$(find mecabot_bringup)/rviz/urdf.rviz" />
+
+    <include file="$(find mecabot_bringup)/launch/includes/description.launch.xml">
+        <arg name="use_simulation" value="true"/>
+    </include>
+
+    <!-- Open rviz for visualization -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)"/>
+
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+        <param name="publish_frequency" type="double" value="50.0" />
+    </node>
+</launch>
