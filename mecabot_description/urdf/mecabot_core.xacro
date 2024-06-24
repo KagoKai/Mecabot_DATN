@@ -36,9 +36,9 @@
                 radius="${wheel_radius}" thickness="${wheel_thickness}" side_FB="-1" side_LR="-1"/>
 
     <!--~~~~~~~~~~ LIDAR ~~~~~~~~~~-->
-    <xacro:lidar parent="upper_layer"/> 
+    <xacro:lidar parent="base"/> 
     <!--~~~~~~~~~~ IMU ~~~~~~~~~~-->
-    <xacro:imu parent="upper_layer"/>
+    <xacro:imu parent="base"/>
 
     <!--~~~~~~~~~~ Extra simulation components (if use Gazebo). Change condition to False when run on real robot  ~~~~~~~~~~-->
     <xacro:if value="$(arg use_simulation)">

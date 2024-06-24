@@ -1,0 +1,5 @@
+<launch>
+    <include file="$(find als_ros)/launch/mcl.launch">
+        <arg name="localization_hz" value="10"/>
+    </include>
+</launch>

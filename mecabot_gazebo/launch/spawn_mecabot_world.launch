@@ -28,10 +28,4 @@
     <!-- Spawn the robot with gazebo_ros -->
     <node name="robot_spawn" pkg="gazebo_ros" type="spawn_model" output="screen"
             args="-urdf -model mecabot -param robot_description -x $(arg x) -y $(arg y) -z $(arg z)"/>
-
-    <arg name="rvizconfig" default="$(find mecabot_gazebo)/rviz/simulation.rviz" />
-
-    <!-- Open rviz for visualization -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" if="$(arg use_rviz)"/>
-
 </launch>

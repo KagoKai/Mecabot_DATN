@@ -4,8 +4,21 @@
   <!-- Arguments -->
   <arg name="slam_methods" default="toolbox" doc="slam type [gmapping, hector, karto, toolbox]"/>
   <arg name="configuration_basename" default="robot_lds_2d.lua"/>
-  <arg name="open_rviz" default="false"/>
+  <arg name="open_rviz" default="true"/>
   <arg name="use_simulation" default="false"/>
+
+  <!-- Gazebo (if use simulation) -->
+  <group if="$(arg use_simulation)">
+    <include file="$(find mecabot_gazebo)/launch/spawn_mecabot_world.launch">
+      <arg name="use_rviz" value="false"/>
+    </include>
+  </group>
+
+  <!-- Robot descrition (if use real robot) -->
+  <group unless="$(arg use_simulation)">
+    <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch"/>
+    <include file="$(find mecabot_bringup)/launch/mecabot_odom.launch"/>
+  </group>
 
   <!-- SLAM: Gmapping, Hector, Karto, Toolbox -->
   <include file="$(find mecabot_slam)/launch/mecabot_$(arg slam_methods).launch">
@@ -18,11 +31,4 @@
           args="-d $(find mecabot_slam)/rviz/mecabot_$(arg slam_methods).rviz"/>
   </group>
 
-  <!-- Gazebo (if use simulation) -->
-  <group if="$(arg use_simulation)">
-    <include file="$(find mecabot_gazebo)/launch/spawn_mecabot_world.launch">
-      <arg name="use_rviz" value="false"/>
-    </include>
-  </group>
-  <!-- Robot descrition (if use real robot) -->
 </launch>

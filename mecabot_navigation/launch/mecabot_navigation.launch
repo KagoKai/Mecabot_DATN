@@ -2,7 +2,7 @@
     <!-- Arguments -->
     <arg name="map_file" default="$(find mecabot_navigation)/maps/lab_map_final.yaml"/>
     <arg name="move_forward_only" default="true"/>
-    <arg name="use_rviz" default="false"/>
+    <arg name="use_rviz" default="true"/>
     <arg name="rvizconfig" default="$(find mecabot_navigation)/rviz/mecabot_nav.rviz" />
     <arg name="use_simulation" default="false"/>
 
@@ -13,6 +13,17 @@
     <group if="$(arg use_simulation)">
         <include file="$(find mecabot_gazebo)/launch/spawn_mecabot_world.launch" if="$(arg use_simulation)"/>
     </group>
+
+    <!-- Robot descrition (if use real robot) -->
+    <group unless="$(arg use_simulation)">
+        <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch"/>
+        <include file="$(find mecabot_bringup)/launch/mecabot_odom.launch"/>
+    </group>
+
+    <!-- AMCL -->
+    <!-- <include file="$(find mecabot_navigation)/launch/amcl.launch"/> -->
+    <!-- MCL -->
+    <!-- <include file="$(find als_ros)/launch/mcl.launch"/> -->
 
     <!-- move_base -->
     <include file="$(find mecabot_navigation)/launch/move_base.launch">
