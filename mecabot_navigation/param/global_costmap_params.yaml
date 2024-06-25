@@ -10,4 +10,4 @@ global_costmap:
   
   origin_x: 0
   origin_y: 0
-  transform_tolerance: 0.5
+  transform_tolerance: 0.1
