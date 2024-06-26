@@ -173,7 +173,7 @@
     <arg name="localization_hz" default="10.0" />
 
     <!-- transform tolerance between mcl pose and odometry in second -->
-    <arg name="transform_tolerance" default="0.05" />
+    <arg name="transform_tolerance" default="0.0" />
 
     <!-- Parameters used for randam particles in resampling (x, y, yaw).
          These parameters are used when use_augmented_mcl or add_random_particles_in_resampling is true. -->

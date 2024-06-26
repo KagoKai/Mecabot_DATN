@@ -8,6 +8,7 @@ Panels:
         - /Status1
         - /TF1/Frames1
         - /TF1/Tree1
+        - /Local Path1
       Splitter Ratio: 0.5
     Tree Height: 696
   - Class: rviz/Selection
@@ -27,7 +28,7 @@ Panels:
   - Class: rviz/Time
     Name: Time
     SyncMode: 2
-    SyncSource: ""
+    SyncSource: LaserScan
 Preferences:
   PromptSaveOnExit: true
 Toolbars:
@@ -136,6 +137,8 @@ Visualization Manager:
           Value: false
         lower_layer_link:
           Value: false
+        map:
+          Value: true
         odom:
           Value: true
         upper_layer_link:
@@ -147,24 +150,25 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        odom:
-          base_link:
-            back_left_wheel_link:
-              {}
-            back_right_wheel_link:
-              {}
-            front_left_wheel_link:
-              {}
-            front_right_wheel_link:
-              {}
-            imu_frame:
-              {}
-            lidar_frame:
-              {}
-            lower_layer_link:
-              {}
-            upper_layer_link:
-              {}
+        map:
+          odom:
+            base_link:
+              back_left_wheel_link:
+                {}
+              back_right_wheel_link:
+                {}
+              front_left_wheel_link:
+                {}
+              front_right_wheel_link:
+                {}
+              imu_frame:
+                {}
+              lidar_frame:
+                {}
+              lower_layer_link:
+                {}
+              upper_layer_link:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -211,7 +215,7 @@ Visualization Manager:
       Axes Radius: 0.009999999776482582
       Class: rviz/PoseArray
       Color: 255; 25; 0
-      Enabled: true
+      Enabled: false
       Head Length: 0.07000000029802322
       Head Radius: 0.029999999329447746
       Name: PoseArray
@@ -221,7 +225,7 @@ Visualization Manager:
       Shape: Arrow (Flat)
       Topic: /mcl_particles
       Unreliable: false
-      Value: true
+      Value: false
     - Angle Tolerance: 0.10000000149011612
       Class: rviz/Odometry
       Covariance:
@@ -304,7 +308,7 @@ Visualization Manager:
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
-      Color: 25; 255; 0
+      Color: 0; 0; 255
       Enabled: true
       Head Diameter: 0.30000001192092896
       Head Length: 0.20000000298023224
@@ -353,7 +357,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 5.4426727294921875
+      Distance: 3.9128146171569824
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1

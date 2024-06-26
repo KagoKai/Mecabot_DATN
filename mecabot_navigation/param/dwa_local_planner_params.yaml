@@ -12,13 +12,13 @@ DWAPlannerROS:
   max_vel_trans:  0.5     # m/s
   min_vel_trans:  0.3     # m/s
 
-  max_rot_vel:  2.75     # rad/s
-  min_rot_vel : 1.05      # rad/s
+  max_vel_theta:  2.75     # rad/s
+  min_vel_theta : 1.05      # rad/s
 
-  acc_lim_x: 10.0
-  acc_lim_y: 10.0
+  acc_lim_x: 2.0
+  acc_lim_y: 2.0
   acc_lim_theta: 6.0 
-  acc_lim_trans: 10.0
+  acc_lim_trans: 4.0
 
 # Goal Tolerance Parametes
   xy_goal_tolerance: 0.15

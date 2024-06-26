@@ -10,7 +10,7 @@ Panels:
         - /Imu1/Acceleration properties1
         - /Map1
         - /Wheel Odometry1/Covariance1/Position1
-        - /LaserScan1/Status1
+        - /LaserScan1
       Splitter Ratio: 0.5
     Tree Height: 696
   - Class: rviz/Selection
@@ -139,8 +139,6 @@ Visualization Manager:
           Value: false
         lower_layer_link:
           Value: false
-        map:
-          Value: true
         odom:
           Value: true
         upper_layer_link:
@@ -152,24 +150,24 @@ Visualization Manager:
       Show Axes: true
       Show Names: true
       Tree:
-        map:
-          odom:
-            base_link:
-              back_left_wheel_link:
-                {}
-              back_right_wheel_link:
-                {}
-              front_left_wheel_link:
-                {}
-              front_right_wheel_link:
-                {}
-              lower_layer_link:
-                {}
-              upper_layer_link:
-                imu_frame:
-                  {}
-                lidar_frame:
-                  {}
+        odom:
+          base_link:
+            back_left_wheel_link:
+              {}
+            back_right_wheel_link:
+              {}
+            front_left_wheel_link:
+              {}
+            front_right_wheel_link:
+              {}
+            imu_frame:
+              {}
+            lidar_frame:
+              {}
+            lower_layer_link:
+              {}
+            upper_layer_link:
+              {}
       Update Interval: 0
       Value: true
     - Acceleration properties:
@@ -318,7 +316,7 @@ Visualization Manager:
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: map
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -342,7 +340,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 20.855133056640625
+      Distance: 5.679665565490723
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -350,17 +348,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 1.8012374639511108
-        Y: -1.425379753112793
-        Z: 0.779142439365387
+        X: 2.1418676376342773
+        Y: -2.7091197967529297
+        Z: 1.9444589614868164
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.1997966766357422
+      Pitch: 1.2947967052459717
       Target Frame: <Fixed Frame>
-      Yaw: 3.0804083347320557
+      Yaw: 4.245408058166504
     Saved: ~
 Window Geometry:
   Displays:

@@ -21,11 +21,9 @@
     </group>
 
     <!-- AMCL -->
-    <!-- <include file="$(find mecabot_navigation)/launch/amcl.launch"/> -->
+    <include file="$(find mecabot_navigation)/launch/amcl.launch"/>
     <!-- MCL -->
-    <include file="$(find als_ros)/launch/mcl.launch">
-        <arg name="localization_hz" value="10"/>
-    </include>
+    <!-- <include file="$(find als_ros)/launch/mcl.launch"/> -->
 
     <!-- Open rviz for visualization -->
     <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" if="$(arg use_rviz)"/>
