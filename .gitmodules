@@ -1,0 +1,3 @@
+[submodule "rosbag_to_csv"]
+	path = rosbag_to_csv
+	url = https://github.com/AtsushiSakai/rosbag_to_csv.git
