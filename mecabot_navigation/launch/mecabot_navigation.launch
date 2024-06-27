@@ -12,6 +12,7 @@
     <!-- Run the simulation in Gazebo (only run on server machine) -->
     <group if="$(arg use_simulation)">
         <include file="$(find mecabot_gazebo)/launch/spawn_mecabot_world.launch" if="$(arg use_simulation)"/>
+        <include file="$(find mecabot_navigation)/launch/amcl.launch"/>
     </group>
 
     <!-- Robot descrition (if use real robot) -->

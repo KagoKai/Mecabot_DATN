@@ -5,7 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /Status1
+        - /Grid1
         - /TF1/Frames1
         - /TF1/Tree1
         - /Local Path1
@@ -357,7 +357,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 7.723202705383301
+      Distance: 15.086858749389648
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -365,17 +365,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 0.6446978449821472
+        Y: -0.061850033700466156
+        Z: 0.0006447734776884317
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.225398063659668
+      Pitch: 1.5697963237762451
       Target Frame: <Fixed Frame>
-      Yaw: 3.0804038047790527
+      Yaw: 3.140403985977173
     Saved: ~
 Window Geometry:
   Displays:
