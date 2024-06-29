@@ -1,4 +1,4 @@
-#define NUM_OF_GOALS    3
+#define NUM_OF_GOALS    5
 #define PI              3.141593
 
 #include <ros/ros.h>
@@ -19,7 +19,9 @@ const Position_t goal_pos[] =
 {
     { .x =  3.6f, .y =  0.0f, .theta =  0.0f },
     { .x =  3.6f, .y = -1.2f, .theta =  0.0f },
-    { .x =  2.7f, .y =  -1.8f, .theta = -PI/2 },
+    { .x =  3.6f, .y = -1.8f, .theta = -PI/2 }, // Transition point
+    { .x =  2.7f, .y = -1.8f, .theta = -PI/2 },
+    { .x =  0.0f, .y =  0.0f, .theta =  0.0f }
 };
 static move_base_msgs::MoveBaseGoal goal;
 static bool start_flag = false;
@@ -88,9 +90,14 @@ int main(int argc, char** argv)
                     ROS_INFO("Goal reached !");
                 }
 
-                ros::Duration(5.0).sleep(); // Stay in place for 5 seconds
+                if (i != 2)
+                {
+                    ros::Duration(5.0).sleep(); // Stay in place for 5 seconds
+                }
+                loop_rate.sleep();
             }
 
+            ROS_INFO("The demo path program is finished !");
             start_flag = false;
         }
 
