@@ -1,9 +1,10 @@
-#define NUM_OF_GOALS    5
+#define NUM_OF_GOALS    7
 #define PI              3.141593
 
 #include <ros/ros.h>
 #include <std_msgs/Bool.h>
 #include <move_base_msgs/MoveBaseAction.h>
+#include <geometry_msgs/Twist.h>
 #include <actionlib/client/simple_action_client.h>
 #include <tf/tf.h>
 
@@ -17,18 +18,20 @@ typedef struct
 }Position_t;
 const Position_t goal_pos[] =
 {
-    { .x =  3.6f, .y =  0.0f, .theta =  0.0f },
-    { .x =  3.6f, .y = -1.2f, .theta =  0.0f },
-    { .x =  3.6f, .y = -1.8f, .theta = -PI/2 }, // Transition point
-    { .x =  2.7f, .y = -1.8f, .theta = -PI/2 },
-    { .x =  0.0f, .y =  0.0f, .theta =  0.0f }
+    { .x =  3.6f, .y =  0.0f, .theta = -PI/2 }, // Stop Point 1
+    { .x =  3.6f, .y = -0.3f, .theta = -PI/2 },
+    { .x =  3.6f, .y = -0.6f, .theta = -PI/2 },
+    { .x =  3.6f, .y = -0.9f, .theta = -PI/2 },
+    { .x =  3.6f, .y = -1.2f, .theta = -PI/2 }, // Stop Point 2
+    { .x =  2.7f, .y = -1.5f, .theta = -PI/2 }, // Stop Point 3
+    { .x =  0.0f, .y =  0.0f, .theta =  0.0f }  // Return to starting point
 };
 static move_base_msgs::MoveBaseGoal goal;
 static bool start_flag = false;
 
 void startSignalCallback(const std_msgs::Bool& start_signal_msg)
 {
-    if (start_signal_msg.data == 1)
+    if (start_signal_msg.data == true)
     {
         ROS_INFO("Start signal received. Initialize demo path ...");
         start_flag = true;
@@ -60,6 +63,7 @@ int main(int argc, char** argv)
 
     // Subscriber to start signal
     ros::Subscriber sub_start_signal = nh.subscribe("start_signal", 100, startSignalCallback);
+    // Publisher to cmd_vel
 
     // Tell the action client that we want to spin a thread by default
     MoveBaseClient ac("move_base", true);
@@ -90,10 +94,8 @@ int main(int argc, char** argv)
                     ROS_INFO("Goal reached !");
                 }
 
-                if (i != 2)
-                {
-                    ros::Duration(5.0).sleep(); // Stay in place for 5 seconds
-                }
+                ros::Duration(2.0).sleep(); // Stay in place for 5 seconds
+                
                 loop_rate.sleep();
             }
 
