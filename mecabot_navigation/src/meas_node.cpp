@@ -32,7 +32,6 @@ void startSignalCallback(const std_msgs::Bool& start_signal_msg)
     {
         ROS_INFO("Start signal received. Initialize demo path ...");
         start_flag = true;
-        ros::Duration(5.0).sleep();
     }
 }
 
@@ -92,7 +91,7 @@ int main(int argc, char** argv)
                     ROS_INFO("Goal reached !");
                 }
 
-                ros::Duration(2.0).sleep(); // Stay in place for 5 seconds
+                ros::Duration(15.0).sleep(); // Stay in place for 15 seconds
                 
                 loop_rate.sleep();
             }

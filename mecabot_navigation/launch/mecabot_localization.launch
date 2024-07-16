@@ -17,7 +17,6 @@
     <!-- Robot descrition (if use real robot) -->
     <group unless="$(arg use_simulation)">
         <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch"/>
-        <include file="$(find mecabot_bringup)/launch/mecabot_odom.launch"/>
     </group>
 
     <!-- AMCL -->

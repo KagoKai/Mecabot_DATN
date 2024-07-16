@@ -139,6 +139,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/mecabot_navigation_node.cpp)
+add_executable(meas_node src/meas_node.cpp)
 add_executable(path_node src/path_node.cpp)
 
 ## Rename C++ executable without prefix
@@ -155,6 +156,7 @@ add_executable(path_node src/path_node.cpp)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(meas_node ${catkin_LIBRARIES})
 target_link_libraries(path_node ${catkin_LIBRARIES})
 
 #############

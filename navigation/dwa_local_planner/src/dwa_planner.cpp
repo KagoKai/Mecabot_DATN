@@ -244,7 +244,7 @@ namespace dwa_local_planner {
       const geometry_msgs::PoseStamped& global_pose,
       const std::vector<geometry_msgs::PoseStamped>& new_plan,
       const std::vector<geometry_msgs::Point>& footprint_spec) {
-    global_plan_.resize(new_plan.size());
+    global_plan_.resize(new_plan.size()); // Update the current global plan to be a segment of the true global path
     for (unsigned int i = 0; i < new_plan.size(); ++i) {
       global_plan_[i] = new_plan[i];
     }
@@ -317,7 +317,7 @@ namespace dwa_local_planner {
 
     result_traj_.cost_ = -7;
     // find best trajectory by sampling and scoring the samples
-    std::vector<base_local_planner::Trajectory> all_explored;
+    std::vector<base_local_planner::Trajectory> all_explored; // List of trajectories (for debugging)
     scored_sampling_planner_.findBestTrajectory(result_traj_, &all_explored);
 
     if(publish_traj_pc_)

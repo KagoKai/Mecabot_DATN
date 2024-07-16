@@ -14,5 +14,5 @@ obstacle_layer:
   scan: {sensor_frame: lidar_frame, data_type: LaserScan, topic: scan, marking: true, clearing: true}
 
 inflation_layer:
-  inflation_radius: 0.4
+  inflation_radius: 0.3
   cost_scaling_factor: 3.0

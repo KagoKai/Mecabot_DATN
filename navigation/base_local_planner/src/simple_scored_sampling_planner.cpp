@@ -96,21 +96,21 @@ namespace base_local_planner {
       count = 0;
       count_valid = 0;
       TrajectorySampleGenerator* gen_ = *loop_gen;
-      while (gen_->hasMoreTrajectories()) {
+      while (gen_->hasMoreTrajectories()) { // Loop until there's no trajectory sample left
         gen_success = gen_->nextTrajectory(loop_traj);
         if (gen_success == false) {
           // TODO use this for debugging
           continue;
         }
         loop_traj_cost = scoreTrajectory(loop_traj, best_traj_cost);
-        if (all_explored != NULL) {
+        if (all_explored != NULL) { // If the trajectory vector isn's NULL, push the possible trajectory into it
           loop_traj.cost_ = loop_traj_cost;
           all_explored->push_back(loop_traj);
         }
 
         if (loop_traj_cost >= 0) {
           count_valid++;
-          if (best_traj_cost < 0 || loop_traj_cost < best_traj_cost) {
+          if (best_traj_cost < 0 || loop_traj_cost < best_traj_cost) { // Update the best cost
             best_traj_cost = loop_traj_cost;
             best_traj = loop_traj;
           }
@@ -120,14 +120,15 @@ namespace base_local_planner {
           break;
         }        
       }
-      if (best_traj_cost >= 0) {
+      
+      if (best_traj_cost >= 0) { // Return the trajectory with the best cost
         traj.xv_ = best_traj.xv_;
         traj.yv_ = best_traj.yv_;
         traj.thetav_ = best_traj.thetav_;
         traj.cost_ = best_traj_cost;
         traj.resetPoints();
         double px, py, pth;
-        for (unsigned int i = 0; i < best_traj.getPointsSize(); i++) {
+        for (unsigned int i = 0; i < best_traj.getPointsSize(); i++) { // Added discrete point for visualization
           best_traj.getPoint(i, px, py, pth);
           traj.addPoint(px, py, pth);
         }

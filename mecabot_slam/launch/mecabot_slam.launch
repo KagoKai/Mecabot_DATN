@@ -2,7 +2,7 @@
 
 <launch>
   <!-- Arguments -->
-  <arg name="slam_methods" default="toolbox" doc="slam type [gmapping, hector, karto, toolbox]"/>
+  <arg name="slam_methods" default="gmapping" doc="slam type [gmapping, hector, karto, toolbox]"/>
   <arg name="configuration_basename" default="robot_lds_2d.lua"/>
   <arg name="open_rviz" default="true"/>
   <arg name="use_simulation" default="false"/>
@@ -17,7 +17,6 @@
   <!-- Robot descrition (if use real robot) -->
   <group unless="$(arg use_simulation)">
     <include file="$(find mecabot_bringup)/launch/mecabot_remote.launch"/>
-    <include file="$(find mecabot_bringup)/launch/mecabot_odom.launch"/>
   </group>
 
   <!-- SLAM: Gmapping, Hector, Karto, Toolbox -->
