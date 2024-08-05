@@ -141,6 +141,7 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/mecabot_navigation_node.cpp)
 add_executable(meas_node src/meas_node.cpp)
 add_executable(path_node src/path_node.cpp)
+add_executable(path_2_node src/path_2_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -158,6 +159,7 @@ add_executable(path_node src/path_node.cpp)
 # )
 target_link_libraries(meas_node ${catkin_LIBRARIES})
 target_link_libraries(path_node ${catkin_LIBRARIES})
+target_link_libraries(path_2_node ${catkin_LIBRARIES})
 
 #############
 ## Install ##

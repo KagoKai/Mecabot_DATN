@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Wheel Odometry1/Covariance1/Position1
+        - /Global Path1
       Splitter Ratio: 0.5
     Tree Height: 696
   - Class: rviz/Selection
@@ -250,7 +251,7 @@ Visualization Manager:
       Value: false
     - Alpha: 0.699999988079071
       Class: rviz/Map
-      Color Scheme: map
+      Color Scheme: costmap
       Draw Behind: false
       Enabled: true
       Name: Local Costmap
@@ -320,7 +321,7 @@ Visualization Manager:
         Z: 0
       Pose Color: 255; 85; 255
       Pose Style: None
-      Queue Size: 10
+      Queue Size: 20
       Radius: 0.029999999329447746
       Shaft Diameter: 0.10000000149011612
       Shaft Length: 0.10000000149011612
@@ -351,6 +352,16 @@ Visualization Manager:
       Topic: /move_base/DWAPlannerROS/local_plan
       Unreliable: false
       Value: true
+    - Alpha: 0.699999988079071
+      Class: rviz/Map
+      Color Scheme: raw
+      Draw Behind: false
+      Enabled: false
+      Name: Map
+      Topic: /move_base/global_costmap/costmap
+      Unreliable: false
+      Use Timestamp: false
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -379,7 +390,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10.732501029968262
+      Distance: 10.120262145996094
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -387,17 +398,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.5475168824195862
-        Y: -1.5966237783432007
-        Z: 2.0279922485351562
+        X: 0.4117026925086975
+        Y: -2.3924052715301514
+        Z: 1.9550952911376953
       Focal Shape Fixed Size: false
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.519796371459961
+      Pitch: 1.484796404838562
       Target Frame: <Fixed Frame>
-      Yaw: 3.105407238006592
+      Yaw: 3.0754096508026123
     Saved: ~
 Window Geometry:
   Displays:
